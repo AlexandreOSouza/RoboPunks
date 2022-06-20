@@ -1,6 +1,6 @@
 // SDPX-License-Identifier: MIT
 
-pragma solidity ^0.8.5;
+pragma solidity ^0.8.4;
 
 import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
@@ -48,9 +48,9 @@ contract RoboPunksNFT is ERC721, Ownable {
         require(walletMints[msg.sender] + _quantity <= maxPerWallet, 'Too many tokens.');
 
         for (uint256 i = 0; i < _quantity; i++) {
-            uint256 tokenId = totalSupply + 1;
+            uint256 newTokenId = totalSupply + 1;
             totalSupply++;
-            _safeMint(msg.sender, tokenId);
+            _safeMint(msg.sender, newTokenId);
         }
 
     }
