@@ -16,7 +16,9 @@ const MainMint = ({ accounts, setAccount }) => {
             const contract = new ethers.Contract(roboPunksNFTAddress, roboPunksNFT.abi, signer);
 
             try {
-                const tx = await contract.mint(BigNumber.from(mintAmount));
+                const tx = await contract.mint(BigNumber.from(mintAmount), {
+                    value: ethers.utils.parseEther((0.02 * mintAmount).toString()),
+                });
                 console.log(tx);
             } catch (err) {
                 console.log(err);
