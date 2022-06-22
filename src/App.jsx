@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import MainMint from './MainMint';
-import NavBar from './NavBar';
+import MainMint from './components/MainMint';
+import NavBar from './components/NavBar';
 
 function App() {
 
