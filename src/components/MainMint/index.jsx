@@ -27,7 +27,7 @@ const MainMint = () => {
                 <div>
                     <Text fontSize={'48px'} textShadow={'0 5px #000'}>RoboPunks</Text>
                     <Text fontSize={'30px'} letterSpacing={'-5.5%'} fontFamily={'VT323'} textShadow={'0 2px 2px #000'}>
-                        It's 2078. Can the RoboPunks NFT save humans from destructive  rempant NFT speculation? Mint Robopunks to find out.
+                        It's 2078. Can the Robo Punks NFT save humans from destructive rempant NFT speculation? Mint Robo Punks to find out.
                     </Text>
                 </div>
 
