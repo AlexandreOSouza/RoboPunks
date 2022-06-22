@@ -1,29 +1,14 @@
 import { useState } from 'react';
-import { ethers, BigNumber } from 'ethers';
 import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
-import roboPunksNFT from '../../RoboPunksNFT.json';
 
-const roboPunksNFTAddress = "0x5c05a103Ce9626240F847AfC92C0C0f42702A084";
+import { useWallet } from '../../hooks/useWallet';
 
-const MainMint = ({ accounts, setAccount }) => {
+const MainMint = () => {
     const [mintAmount, setMintAmount] = useState(1);
-    const isConnected = Boolean(accounts[0]);
+    const { mint, address } = useWallet();
 
     async function handleMint() {
-        if (window.ethereum) {
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const signer = provider.getSigner();
-            const contract = new ethers.Contract(roboPunksNFTAddress, roboPunksNFT.abi, signer);
-
-            try {
-                const tx = await contract.mint(BigNumber.from(mintAmount), {
-                    value: ethers.utils.parseEther((0.02 * mintAmount).toString()),
-                });
-                console.log(tx);
-            } catch (err) {
-                console.log(err);
-            }
-        }
+        mint(mintAmount);
     }
 
     const handleDecrement = () => {
@@ -46,7 +31,7 @@ const MainMint = ({ accounts, setAccount }) => {
                     </Text>
                 </div>
 
-                {isConnected ? (
+                {address ? (
                     <div>
                         <Flex align={'center'} justify="center">
                             <Button

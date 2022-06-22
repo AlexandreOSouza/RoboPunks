@@ -2,17 +2,14 @@ import { Box, Button, Flex, Image, Link, Spacer } from '@chakra-ui/react';
 import Facebook from "../../assets/social-media-icons/facebook_32x32.png";
 import Twitter from "../../assets/social-media-icons/twitter_32x32.png";
 import Email from "../../assets/social-media-icons/email_32x32.png";
+import { useWallet } from '../../hooks/useWallet';
+import { useEffect } from 'react';
 
-const NavBar = ({ accounts, setAccounts }) => {
-    const isConnected = Boolean(accounts[0]);
+const NavBar = () => {
+    const { connect, address } = useWallet();
 
     async function connectAccount() {
-        if (window.ethereum) {
-            const accounts = await window.ethereum.request({
-                method: 'eth_requestAccounts',
-            });
-            setAccounts(accounts);
-        }
+        connect();
     }
 
     return (
@@ -41,7 +38,7 @@ const NavBar = ({ accounts, setAccounts }) => {
                 <Spacer />
                 <Box margin={'0 15px'}>Team</Box>
                 <Spacer />
-                {isConnected ? (
+                {address ? (
                     <Box margin={'0 15px'}>Connected</Box>
                 ) : (
                     <Button
